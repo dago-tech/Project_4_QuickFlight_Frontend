@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import Modal from 'react-modal';
+import Modal from "react-modal";
 import Loader from "./Loader";
 import ItemsTable from "./ItemsTable";
 import { getData, deleteData, postData } from "../helpers/axios";
+import "../styles/styles.css";
 
-const ItemsList = ({ endpoint, mode, dataToSend}) => {
-    
+const ItemsList = ({ endpoint, mode, dataToSend }) => {
     const [data, setData] = useState(null);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -14,39 +14,48 @@ const ItemsList = ({ endpoint, mode, dataToSend}) => {
 
     useEffect(() => {
         setLoading(true);
-        if (mode=="delete"){
+        if (mode == "delete") {
             getData(endpoint)
-            .then((response) => {
-                console.log(response)
-                setData(response);
-                setError(null);
-            })
-            .catch((error) => {
-                setError(error);
-            })
-            .finally(() => {
-                setLoading(false);
-            });
-        } else {
+                .then((response) => {
+                    setData(response);
+                    setError(null);
+                })
+                .catch((error) => {
+                    setError(error);
+                })
+                .finally(() => {
+                    setLoading(false);
+                });
+        } else if (mode == "book" && dataToSend) {
             postData(endpoint, dataToSend)
-            .then((response) => {
-                console.log(response)
-                setData(response);
-                setError(null);
-            })
-            .catch((error) => {
-                setError(error);
-            })
-            .finally(() => {
-                setLoading(false);
-            });
+                .then((response) => {
+                    setData(response);
+                    setError(null);
+                })
+                .catch((error) => {
+                    setError(error);
+                })
+                .finally(() => {
+                    setLoading(false);
+                });
+        } else {
+            getData(endpoint)
+                .then((response) => {
+                    setData(response);
+                    setError(null);
+                })
+                .catch((error) => {
+                    setError(error);
+                })
+                .finally(() => {
+                    setLoading(false);
+                });
         }
-        
     }, []);
 
     const deleteRegister = (id) => {
         setShowModal(true);
-        setId(id)
+        setId(id);
     };
 
     const handleConfirmDelete = () => {
@@ -62,15 +71,12 @@ const ItemsList = ({ endpoint, mode, dataToSend}) => {
                 setData(null);
                 setError(error);
             });
-        // Cierra el modal después de confirmar
+        // Close modal after confirmation
         setShowModal(false);
     };
 
     const handleCancelDelete = () => {
-        // Lógica para cancelar la eliminación
-        console.log('Eliminación cancelada');
-
-        // Cierra el modal
+        // Close modal
         setShowModal(false);
     };
 
@@ -88,11 +94,11 @@ const ItemsList = ({ endpoint, mode, dataToSend}) => {
             <div>
                 {/*Overlay is a visual layer that is overlaid on top of the main content 
                 of the page or application when the modal is displayed. */}
-                <Modal 
+                <Modal
                     isOpen={showModal}
                     contentLabel="Delete Modal"
                     className="modal-content"
-                    overlayClassName="modal-overlay" // 
+                    overlayClassName="modal-overlay"
                 >
                     <p>¿Do you want to delete this register?</p>
                     <button onClick={handleConfirmDelete}>Delete</button>

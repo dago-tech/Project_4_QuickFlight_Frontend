@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
-import "../styles/styles.css";
+import { Link } from "react-router-dom";
+import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import BackButton from "../components/BackButton";
 import ItemsList from "../components/ItemsList";
+import Button from "@mui/material/Button";
+import "../styles/styles.css";
 
 export function FlightSearch() {
-
     const initialFormData = {
         origin: "",
         destination: "",
@@ -17,9 +18,7 @@ export function FlightSearch() {
     const [submited, setSubmited] = useState(false);
     const [errorForm, setErrorForm] = useState(null);
 
-
     const handleChange = (e) => {
-        console.log(e)
         setFormData({
             ...formData,
             [e.target.name]: e.target.value,
@@ -37,8 +36,6 @@ export function FlightSearch() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        console.log(formData);
-
         if (formData.origin == "" || formData.destination == "") {
             setErrorForm("¡You did not fill out all the fields!");
             return;
@@ -47,7 +44,6 @@ export function FlightSearch() {
         setErrorForm("");
 
         setSubmited(true);
-
     };
 
     const handleReset = (e) => {
@@ -56,14 +52,20 @@ export function FlightSearch() {
 
     return (
         <>
-            <BackButton/>
+            <BackButton />
             <div className="center">
                 <h1>Flight Search</h1>
-                <form style={{ display: 'flex', flexDirection: 'column', maxWidth: '250px' }}>
-                    <label 
-                        htmlFor="origin" 
-                        >Origin:
-                    </label>
+                <p className="styled_text">
+                    Fill this form to search for available flights or go to the
+                    flight list
+                </p>
+                <Link to="/flight_list_to_book">
+                    <Button variant="contained" size="small">
+                        Flight List
+                    </Button>
+                </Link>
+                <form className="form_flight_create">
+                    <label htmlFor="origin">Origin:</label>
                     <input
                         type="text"
                         name="origin"
@@ -82,30 +84,35 @@ export function FlightSearch() {
                     />
                     <br />
                     <label>
-                        Departure date and time: 
-                        
-                            <DateTimePicker
-                                name="destination"
-                                value={formData.departure_date}
-                                minDateTime={new Date()}
-                                onChange={(date) => handleChangeDate('departure_date', date)}
-                                slotProps={{ textField: { variant: 'outlined' } }}
-                            />
-
+                        Departure date and time:
+                        <DateTimePicker
+                            name="destination"
+                            value={formData.departure_date}
+                            minDateTime={new Date()}
+                            onChange={(date) =>
+                                handleChangeDate("departure_date", date)
+                            }
+                            slotProps={{ textField: { variant: "outlined" } }}
+                        />
                     </label>
                     <br />
                     <label>
-                        Arrival date and time: 
-
-                            <DateTimePicker
-                                value={formData.arrival_date}
-                                minDateTime={new Date()}
-                                onChange={(date) => handleChangeDate('arrival_date', date)}
-                                slotProps={{ textField: { variant: 'outlined' } }}
-                            />
+                        Arrival date and time:
+                        <DateTimePicker
+                            value={formData.arrival_date}
+                            minDateTime={new Date()}
+                            onChange={(date) =>
+                                handleChangeDate("arrival_date", date)
+                            }
+                            slotProps={{ textField: { variant: "outlined" } }}
+                        />
                     </label>
-                    <br />                    
-                    <input type="button" value="Search" onClick={handleSubmit} />
+                    <br />
+                    <input
+                        type="button"
+                        value="Search"
+                        onClick={handleSubmit}
+                    />
                     <input type="reset" value="Clear" onClick={handleReset} />
                 </form>
                 {errorForm && <p style={{ color: "red" }}>{errorForm}</p>}
@@ -114,9 +121,12 @@ export function FlightSearch() {
             {submited && (
                 <div className="center">
                     <h1>Flight List</h1>
-                    <ItemsList endpoint = "flights/search_flight/" mode="book" dataToSend={formData}/>
+                    <ItemsList
+                        endpoint="flights/search_flight/"
+                        mode="book"
+                        dataToSend={formData}
+                    />
                 </div>
-                
             )}
         </>
     );

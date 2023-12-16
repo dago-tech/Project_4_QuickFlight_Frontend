@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import { postData } from "../helpers/axios";
-import "../styles/styles.css";
 import BackButton from "../components/BackButton";
+import "../styles/styles.css";
 
 export function FlightCreate() {
     const endpoint = "flights/create_flight/";
@@ -13,16 +13,14 @@ export function FlightCreate() {
         arrival_date: new Date(),
         airline: "",
         available_seats: "",
-        price: ""
+        price: "",
     };
 
     const [formData, setFormData] = useState(initialFormData);
     const [errorForm, setErrorForm] = useState(null);
     const [message, setMessage] = useState(null);
 
-
     const handleChange = (e) => {
-        console.log(e)
         setFormData({
             ...formData,
             [e.target.name]: e.target.value,
@@ -37,11 +35,14 @@ export function FlightCreate() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(formData);
 
-        if (formData.origin == "" || formData.destination == "" || 
-            formData.airline == ""|| formData.available_seats== ""||
-            formData.price== "") {
+        if (
+            formData.origin == "" ||
+            formData.destination == "" ||
+            formData.airline == "" ||
+            formData.available_seats == "" ||
+            formData.price == ""
+        ) {
             setErrorForm("¡You did not fill out all the fields!");
             return;
         }
@@ -49,13 +50,12 @@ export function FlightCreate() {
         setErrorForm("");
 
         postData(endpoint, formData)
-            .then(()=>{
-                setMessage("Flight created successfully")
-            }
-            ).catch((error)=>{
-                setMessage(error.response.data[0])
+            .then(() => {
+                setMessage("Flight created successfully");
+            })
+            .catch((error) => {
+                setMessage(error.response.data[0]);
             });
-
     };
 
     const handleReset = (e) => {
@@ -64,54 +64,57 @@ export function FlightCreate() {
 
     return (
         <>
-            <BackButton/>
+            <BackButton />
             <div className="center">
                 <h1>Flight Registration</h1>
-                <form style={{ display: 'flex', flexDirection: 'column', maxWidth: '250px' }}>
-                    <label 
-                        htmlFor="origin" 
-                        >Origin:
-                    </label>
+                <form className="form_flight_create">
+                    <label htmlFor="origin">Origin:</label>
                     <input
                         type="text"
                         name="origin"
-                        placeholder="Origin"
+                        placeholder="BOG - Bogota - Colombia"
                         onChange={handleChange}
                         value={formData.origin}
                     />
+                    <p style={{ margin: "0", color: "gray" }}>
+                        IATA Code - City - Country
+                    </p>
                     <br />
                     <label htmlFor="destination">Destination: </label>
                     <input
                         type="text"
                         name="destination"
-                        placeholder="destination"
+                        placeholder="JFK - New York - USA"
                         onChange={handleChange}
                         value={formData.destination}
                     />
+                    <p style={{ margin: "0", color: "gray" }}>
+                        IATA Code - City - Country
+                    </p>
                     <br />
                     <label>
-                        Departure date and time: 
-                        
-                            <DateTimePicker
-                                name="destination"
-                                value={formData.departure_date}
-                                minDateTime={new Date()}
-                                //format="yyyy-MM-dd'T'HH:mm:ss"
-                                onChange={(date) => handleChangeDate('departure_date', date)}
-                                slotProps={{ textField: { variant: 'outlined' } }}
-                            />
-
+                        Departure date and time:
+                        <DateTimePicker
+                            name="destination"
+                            value={formData.departure_date}
+                            minDateTime={new Date()}
+                            onChange={(date) =>
+                                handleChangeDate("departure_date", date)
+                            }
+                            slotProps={{ textField: { variant: "outlined" } }}
+                        />
                     </label>
                     <br />
                     <label>
-                        Arrival date and time: 
-
-                            <DateTimePicker
-                                value={formData.arrival_date}
-                                minDateTime={new Date()}
-                                onChange={(date) => handleChangeDate('arrival_date', date)}
-                                slotProps={{ textField: { variant: 'outlined' } }}
-                            />
+                        Arrival date and time:
+                        <DateTimePicker
+                            value={formData.arrival_date}
+                            minDateTime={new Date()}
+                            onChange={(date) =>
+                                handleChangeDate("arrival_date", date)
+                            }
+                            slotProps={{ textField: { variant: "outlined" } }}
+                        />
                     </label>
                     <br />
                     <label htmlFor="airline">Airline: </label>
@@ -141,11 +144,11 @@ export function FlightCreate() {
                         value={formData.price || ""}
                     />
                     <br />
-                    
+
                     <input type="button" value="Send" onClick={handleSubmit} />
                     <input type="reset" value="Clear" onClick={handleReset} />
                 </form>
-                {message && <p style={{fontWeight: "bold"}}>{message}</p>}
+                {message && <p style={{ fontWeight: "bold" }}>{message}</p>}
                 {errorForm && <p style={{ color: "red" }}>{errorForm}</p>}
             </div>
         </>

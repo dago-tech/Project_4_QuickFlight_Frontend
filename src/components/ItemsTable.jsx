@@ -1,9 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import ItemsTableRow from "./ItemsTableRow";
 
 const ItemsTable = ({ data, deleteData, mode }) => {
-
     return (
         <div>
             <table>
@@ -14,7 +12,11 @@ const ItemsTable = ({ data, deleteData, mode }) => {
                         <th>Departure time</th>
                         <th>Arrival time</th>
                         <th>Airline</th>
-                        <th>Available<br/>seats</th>
+                        <th>
+                            Available
+                            <br />
+                            seats
+                        </th>
                         <th>Price (COP)</th>
                     </tr>
                 </thead>
