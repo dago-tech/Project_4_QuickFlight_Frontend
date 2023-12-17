@@ -3,6 +3,8 @@ import BackButton from "../components/BackButton";
 import { Link } from "react-router-dom";
 
 export function FlightListToBook() {
+    /*Renders a table of flights from an API where you can reserve flights*/
+    
     return (
         <>
             <BackButton />

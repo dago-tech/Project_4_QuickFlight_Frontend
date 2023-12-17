@@ -6,6 +6,12 @@ import { getData, deleteData, postData } from "../helpers/axios";
 import "../styles/styles.css";
 
 const ItemsList = ({ endpoint, mode, dataToSend }) => {
+    /*Component to get data from an API and render a table of undefined
+    number of rows, used to show a flight list 
+    - Book mode: displays a book button in last column used to reserve a flight
+    - Delete mode: displays a Delete button in last column used to delete a flight
+    - dataToSend: data from FlightSearch.jsx with info to seach for a flight */
+
     const [data, setData] = useState(null);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -14,6 +20,7 @@ const ItemsList = ({ endpoint, mode, dataToSend }) => {
 
     useEffect(() => {
         setLoading(true);
+        /* */
         if (mode == "delete") {
             getData(endpoint)
                 .then((response) => {

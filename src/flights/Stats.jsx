@@ -5,6 +5,8 @@ import BackButton from "../components/BackButton";
 import "../styles/styles.css";
 
 export function Stats() {
+    /*Renders to tables with stats about flights after making an API request */
+
     const endpoint_top_reservations = "flights/top_reservations/";
     const endpoint_count_airlines = "flights/count_airlines/";
     const [dataReservations, setDataReservations] = useState(null);

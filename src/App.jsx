@@ -11,6 +11,8 @@ import ReservationList from "./Reservation/ReservationList";
 import { Stats } from "./Flights/Stats";
 
 function App() {
+    /*Renders application components based on url and react router dom
+    Uses a Provider to give material UI DateTimePicker to all application */
     return (
         <>
             <LocalizationProvider dateAdapter={AdapterDateFns}>

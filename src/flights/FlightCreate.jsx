@@ -5,6 +5,8 @@ import BackButton from "../components/BackButton";
 import "../styles/styles.css";
 
 export function FlightCreate() {
+    /* Renders a form to send data to an API and create a new flight register in the backend */
+    
     const endpoint = "flights/create_flight/";
     const initialFormData = {
         origin: "",
@@ -67,6 +69,7 @@ export function FlightCreate() {
             <BackButton />
             <div className="center">
                 <h1>Flight Registration</h1>
+                <br />
                 <form className="form_flight_create">
                     <label htmlFor="origin">Origin:</label>
                     <input
@@ -76,10 +79,9 @@ export function FlightCreate() {
                         onChange={handleChange}
                         value={formData.origin}
                     />
-                    <p style={{ margin: "0", color: "gray" }}>
+                    <p className="help_label">
                         IATA Code - City - Country
                     </p>
-                    <br />
                     <label htmlFor="destination">Destination: </label>
                     <input
                         type="text"
@@ -88,10 +90,9 @@ export function FlightCreate() {
                         onChange={handleChange}
                         value={formData.destination}
                     />
-                    <p style={{ margin: "0", color: "gray" }}>
+                    <p className="help_label">
                         IATA Code - City - Country
                     </p>
-                    <br />
                     <label>
                         Departure date and time:
                         <DateTimePicker
@@ -101,10 +102,9 @@ export function FlightCreate() {
                             onChange={(date) =>
                                 handleChangeDate("departure_date", date)
                             }
-                            slotProps={{ textField: { variant: "outlined" } }}
+                            slotProps={{ textField: { variant: "outlined", size: 'small' } }}
                         />
                     </label>
-                    <br />
                     <label>
                         Arrival date and time:
                         <DateTimePicker
@@ -113,10 +113,9 @@ export function FlightCreate() {
                             onChange={(date) =>
                                 handleChangeDate("arrival_date", date)
                             }
-                            slotProps={{ textField: { variant: "outlined" } }}
+                            slotProps={{ textField: { variant: "outlined", size: 'small' } }}
                         />
                     </label>
-                    <br />
                     <label htmlFor="airline">Airline: </label>
                     <input
                         type="text"
@@ -125,7 +124,6 @@ export function FlightCreate() {
                         onChange={handleChange}
                         value={formData.airline}
                     />
-                    <br />
                     <label htmlFor="available_seats">Available Seats: </label>
                     <input
                         type="text"
@@ -134,7 +132,6 @@ export function FlightCreate() {
                         onChange={handleChange}
                         value={formData.available_seats || ""}
                     />
-                    <br />
                     <label htmlFor="price">Ticket Price: </label>
                     <input
                         type="text"
@@ -144,7 +141,6 @@ export function FlightCreate() {
                         value={formData.price || ""}
                     />
                     <br />
-
                     <input type="button" value="Create Flight" onClick={handleSubmit} />
                     <input type="reset" value="Clear" onClick={handleReset} />
                 </form>

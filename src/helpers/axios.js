@@ -1,5 +1,7 @@
 import axios from "axios";
 
+/*Script to make HTTP requests to an API*/
+
 const baseURL = "http://127.0.0.1:8000/api/";
 
 const api = axios.create({

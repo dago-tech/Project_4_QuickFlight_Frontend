@@ -6,6 +6,8 @@ import BackButton from "../components/BackButton";
 import "../styles/styles.css";
 
 const ReservationList = () => {
+    /*Renders a list of flight reservations maked by users when press book button*/
+
     const endpoint = "flights/reservation_list/";
     const [data, setData] = useState(null);
     const [error, setError] = useState(null);

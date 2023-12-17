@@ -2,6 +2,8 @@ import ItemsList from "../components/ItemsList";
 import BackButton from "../components/BackButton";
 
 export function FlightListCRUD() {
+    /*Renders a table of flights from an API where you can delete items*/
+    
     return (
         <>
             <BackButton />

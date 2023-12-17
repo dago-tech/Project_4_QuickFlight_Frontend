@@ -7,6 +7,10 @@ import Button from "@mui/material/Button";
 import "../styles/styles.css";
 
 export function FlightSearch() {
+    /* Renders a form where you can input origin, destination and dates to find flights 
+    based on that information. When submitted API look for related flights and show them 
+    in a table below*/
+
     const initialFormData = {
         origin: "",
         destination: "",
@@ -69,20 +73,24 @@ export function FlightSearch() {
                     <input
                         type="text"
                         name="origin"
-                        placeholder="Origin"
+                        placeholder="BOG - Bogota - Colombia"
                         onChange={handleChange}
                         value={formData.origin}
                     />
-                    <br />
+                    <p className="help_label">
+                        IATA Code - City - Country
+                    </p>
                     <label htmlFor="destination">Destination: </label>
                     <input
                         type="text"
                         name="destination"
-                        placeholder="destination"
+                        placeholder="JFK - New York - USA"
                         onChange={handleChange}
                         value={formData.destination}
                     />
-                    <br />
+                    <p className="help_label">
+                        IATA Code - City - Country
+                    </p>
                     <label>
                         Departure date and time:
                         <DateTimePicker
@@ -92,19 +100,19 @@ export function FlightSearch() {
                             onChange={(date) =>
                                 handleChangeDate("departure_date", date)
                             }
-                            slotProps={{ textField: { variant: "outlined" } }}
+                            slotProps={{ textField: { variant: "outlined", size: 'small'} }}
                         />
                     </label>
-                    <br />
                     <label>
                         Arrival date and time:
                         <DateTimePicker
                             value={formData.arrival_date}
+                            size="small"
                             minDateTime={new Date()}
                             onChange={(date) =>
                                 handleChangeDate("arrival_date", date)
                             }
-                            slotProps={{ textField: { variant: "outlined" } }}
+                            slotProps={{ textField: { variant: "outlined", size: 'small' } }}
                         />
                     </label>
                     <br />

@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const ReservationMessage = ({ message }) => {
+    /*Renders a message when a user makes a reservation, it sends you to home
+    page after 3 seconds*/
     const history = useNavigate();
 
     useEffect(() => {

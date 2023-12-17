@@ -3,6 +3,9 @@ import { format, parseISO } from "date-fns";
 import { Link } from "react-router-dom";
 
 const ItemsTableRow = ({ el, deleteData, mode }) => {
+    /*Renders a table row with info from an API, conditional render
+    depends on date, mode and available seats */
+
     const id = el["id"];
     const origin = el["origin"];
     const destination = el["destination"];

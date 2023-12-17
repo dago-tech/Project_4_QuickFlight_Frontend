@@ -2,6 +2,7 @@ import React from "react";
 import ItemsTableRow from "./ItemsTableRow";
 
 const ItemsTable = ({ data, deleteData, mode }) => {
+    /*Renders a table to show data from an API */
     return (
         <div>
             <table>

@@ -3,6 +3,9 @@ import Button from "@mui/material/Button";
 import "../styles/styles.css";
 
 export function Home() {
+    /*Renders de index or home display of QuickFLight project, it has a menu
+    based on buttons */
+    
     const button_style = {
         width: "250px",
         marginBottom: "25px",

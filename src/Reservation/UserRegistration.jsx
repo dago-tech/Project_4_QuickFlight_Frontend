@@ -6,6 +6,8 @@ import ReservationMessage from "./ReservationMessage";
 import "../styles/styles.css";
 
 export function UserRegistration() {
+    /*Renders a form for user registration when he wants to reserve a flight */
+    
     const user_create_endpoint = "flights/user_create/";
     const reservation_create_endpoint = "flights/reservation_create/";
     const { flightId } = useParams();
