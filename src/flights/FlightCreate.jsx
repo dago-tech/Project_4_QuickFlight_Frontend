@@ -145,7 +145,7 @@ export function FlightCreate() {
                     />
                     <br />
 
-                    <input type="button" value="Send" onClick={handleSubmit} />
+                    <input type="button" value="Create Flight" onClick={handleSubmit} />
                     <input type="reset" value="Clear" onClick={handleReset} />
                 </form>
                 {message && <p style={{ fontWeight: "bold" }}>{message}</p>}

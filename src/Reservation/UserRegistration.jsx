@@ -113,7 +113,7 @@ export function UserRegistration() {
                         required
                     />
                     <br />
-                    <input type="button" value="Send" onClick={handleSubmit} />
+                    <input type="button" value="Reserve a Flight" onClick={handleSubmit} />
                     <input type="reset" value="Clear" onClick={handleReset} />
                 </form>
                 {errorForm && <p style={{ color: "red" }}>{errorForm}</p>}
