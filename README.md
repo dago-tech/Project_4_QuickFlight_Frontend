@@ -6,7 +6,9 @@
 
 Esta aplicación cliente es la interfaz gráfica del proyecto QuickFlight el cual va a permitir crear vuelos de avión así como la solicitud de reservas de vuelos basados en datos como el origen, destino, fechas de partida y llegada, y por último la visualización de estadísticas.
 
-- URL Publica: https://production.dftkopmtc08o1.amplifyapp.com/home
+- Se desplegó en el servicio *"Amplify"* de AWS obteniendo la siguiente URL pública:
+
+https://production.dftkopmtc08o1.amplifyapp.com/home
 
 ---
 
@@ -24,6 +26,7 @@ Esta aplicación cliente es la interfaz gráfica del proyecto QuickFlight el cua
 - Versión de Node: 18.13.0
 - Versión react: 18.2.0
 - Versión vite: 5.0.8
+- Version Docker: 4.26.1
 
 ---
 
@@ -32,7 +35,7 @@ Esta aplicación cliente es la interfaz gráfica del proyecto QuickFlight el cua
 
 - Se debe tener instalado Python y Git
 
-1. Abre la terminal o línea de comandos en el computador donde deseas descargar el proyecto.
+1. Abre la terminal o línea de comandos en el computador donde deseas descargar el proyecto. Se recomienda colocar al mismo nivel de la carpeta del backend para poder ajustar facilmente el **"docker-compose.yml"**
 
 2. Navega al directorio donde deseas almacenar el repositorio.
 
