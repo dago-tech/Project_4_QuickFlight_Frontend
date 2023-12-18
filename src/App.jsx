@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Home } from "./home/Home";
-import { FlightCreate } from "./flights/FlightCreate";
+import { FlightCreate } from "./flights/flightCreate";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { UserRegistration } from "./reservation/UserRegistration";
