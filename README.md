@@ -41,53 +41,44 @@ https://production.dftkopmtc08o1.amplifyapp.com/home
 
 3. Ejecuta el siguiente comando de Git para clonar el repositorio a la carpeta actual, esto copiará todas las ramas:
 ```sh
-git clone https://github.com/dago-tech/Project_3_QuickFlight_Backend.git
+git clone https://github.com/dago-tech/Project_4_QuickFlight_Frontend.git
 ```
 
 4. Muévete a la rama main:
+
 ```sh
 git checkout main
 ```
-5. Crea y activa un entorno virtual en la carpeta del proyecto:
+5. Instala las dependencias del package.json
 
 ```sh
-py -m venv venv
-```
-En powershell
-```sh
-venv\Scripts\activate
-```
-En bash
-```sh
-source venv/Scripts/activate
+npm i
 ```
 
-6. Instala todas las dependencias:
+5. Correr el servidor de desarrollo:
 ```sh
-pip install -r requirements.txt
+npm run dev
 ```
 
-7. Como la base de datos corre en la nube ya se le ha realizado migraciones previamente y estos comandos no son necesarios, pero si creas la base de datos en local se deben ajustar los parametros de la base de datos en el archivo settings.py y ejecutar:
+9. Ya se puede visitar la aplicación haciendo uso del **localhost:5173**. En este caso si estás corriendo el backend en local se debe ajustar la URL de la API en el archivo *.helpers/axios.js* a:
 
 ```sh
-py manage.py makemigrations
-py manage.py migrate
-```
-
-8. Correr el servidor de desarrollo:
-```sh
-py manage.py runserver
-```
-
-9. Ya se pueden hacer solicitudes HTTP a este servidor, por ejemplo, usando:
-```sh
-Metodo: GET
-http://localhost:8000/api/flights/
+http://localhost:8000/api/
 ```
 
 ### Docker
 
 De esta aplicación también se puede generar un contenedor utilizando el archivo dockerfile incluido en la raiz del proyecto usando los siguientes comandos:
 
+- Arrancamos Docker desktop
+
+- Nos ubicamos en la raíz del proyecto donde se encuentra el dockerfile y construimos la imagen del contenedor con el nombre que desee:
+
+```sh
 docker build -t nombre_de_la_imagen .
-docker run -p 8000:8000 --name nombre_del_contenedor nombre_de_la_imagen
+```
+- Corremos el contenedor y exponemos el puerto 5173 del host y del contenedor, lo creamos con el nombre que le quedamos dar:
+```sh
+docker run -p 5173:5173 --name nombre_del_contenedor nombre_de_la_imagen
+```
+- Ahora, con el contenedor corriendo, podemos inglesar a la aplicación por medio del navegador y el localhost:5173
