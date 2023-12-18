@@ -1,0 +1,50 @@
+version: '3.9'
+
+
+services:
+  db:
+    image: postgres:14-alpine
+    ports:
+      - '5432:5432'
+
+    environment:
+      - POSTGRES_PASSWORD=maquina123
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=QuickFlight
+
+    volumes:
+      - ./data/db:/var/lib/postgresql/data/
+
+  frontend:
+    build:
+      context: ./03_Frontend/QuickFlight
+      dockerfile: Dockerfile
+
+    ports:
+      - '5173:5173'
+
+    volumes:
+      - ./03_Frontend/QuickFlight:/app/frontend
+      - /app/frontend/node_modules
+
+    depends_on:
+      - backend
+
+  backend: 
+    build: 
+      context: ./02_Backend
+      dockerfile: Dockerfile
+
+    environment:
+      - POSTGRES_PASSWORD=maquina123
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=QuickFlight
+
+    ports:
+      - '8000:8000'
+
+    volumes:
+      - ./02_Backend:/app/backend
+
+    depends_on:
+      - db

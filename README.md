@@ -60,7 +60,7 @@ npm i
 npm run dev
 ```
 
-9. Ya se puede visitar la aplicación haciendo uso del **localhost:5173**. En este caso si estás corriendo el backend en local se debe ajustar la URL de la API en el archivo *.helpers/axios.js* a:
+9. Ya se puede visitar la aplicación haciendo uso de **http://localhost:5173/home**. En este caso si estás corriendo el backend en local se debe ajustar la URL de la API en el archivo *.helpers/axios.js* a:
 
 ```sh
 http://localhost:8000/api/
@@ -81,4 +81,4 @@ docker build -t nombre_de_la_imagen .
 ```sh
 docker run -p 5173:5173 --name nombre_del_contenedor nombre_de_la_imagen
 ```
-- Ahora, con el contenedor corriendo, podemos inglesar a la aplicación por medio del navegador y el localhost:5173
+- Ahora, con el contenedor corriendo, podemos ingresar a la aplicación por medio del navegador y **http://localhost:5173/home**
