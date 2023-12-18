@@ -2,7 +2,7 @@ import axios from "axios";
 
 /*Script to make HTTP requests to an API*/
 
-const baseURL = "http://127.0.0.1:8000/api/";
+const baseURL = "https://quickflight-ffbdc0233c84.herokuapp.com/api/";
 
 const api = axios.create({
     baseURL: baseURL,
