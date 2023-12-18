@@ -1,14 +1,14 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Home } from "./Home/Home";
-import { FlightCreate } from "./Flights/Flightcreate";
+import { FlightCreate } from "./flights/Flightcreate";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { UserRegistration } from "./Reservation/UserRegistration";
-import { FlightSearch } from "./Flights/FlightSearch";
-import { FlightListCRUD } from "./Flights/FlightListCRUD";
-import { FlightListToBook } from "./Flights/FlightListToBook";
+import { FlightSearch } from "./flights/FlightSearch";
+import { FlightListCRUD } from "./flights/FlightListCRUD";
+import { FlightListToBook } from "./flights/FlightListToBook";
 import ReservationList from "./Reservation/ReservationList";
-import { Stats } from "./Flights/Stats";
+import { Stats } from "./flights/Stats";
 
 function App() {
     /*Renders application components based on url and react router dom
