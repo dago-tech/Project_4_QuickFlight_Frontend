@@ -1,7 +1,9 @@
+# Specify the Docker Compose file version
 version: '3.9'
 
-
+# Define services (containers) for the application
 services:
+ # PostgreSQL database service
   db:
     image: postgres:14-alpine
     ports:
@@ -11,30 +13,32 @@ services:
       - POSTGRES_PASSWORD=maquina123
       - POSTGRES_USER=postgres
       - POSTGRES_DB=QuickFlight
-
+    # Mount a volume for persistent data storage
     volumes:
       - ./data/db:/var/lib/postgresql/data/
 
+  # Frontend service
   frontend:
     build:
       context: ./03_Frontend/QuickFlight
       dockerfile: Dockerfile
-
+    # Expose ports for the frontend
     ports:
       - '5173:5173'
 
     volumes:
       - ./03_Frontend/QuickFlight:/app/frontend
       - /app/frontend/node_modules
-
+    # Depend on the backend service
     depends_on:
       - backend
-
+      
+  # Backend service
   backend: 
     build: 
       context: ./02_Backend
       dockerfile: Dockerfile
-
+    # Set environment variables for the backend (using the same as the db service for simplicity)
     environment:
       - POSTGRES_PASSWORD=maquina123
       - POSTGRES_USER=postgres
@@ -45,6 +49,5 @@ services:
 
     volumes:
       - ./02_Backend:/app/backend
-
     depends_on:
       - db
