@@ -28,7 +28,7 @@ const ItemsList = ({ endpoint, mode, dataToSend }) => {
                     setError(null);
                 })
                 .catch((error) => {
-                    setError(error);
+                    setError(error.message);
                 })
                 .finally(() => {
                     setLoading(false);
@@ -40,7 +40,7 @@ const ItemsList = ({ endpoint, mode, dataToSend }) => {
                     setError(null);
                 })
                 .catch((error) => {
-                    setError(error);
+                    setError(error.response.data.error || error.message);
                 })
                 .finally(() => {
                     setLoading(false);
@@ -52,7 +52,7 @@ const ItemsList = ({ endpoint, mode, dataToSend }) => {
                     setError(null);
                 })
                 .catch((error) => {
-                    setError(error);
+                    setError(error.message);
                 })
                 .finally(() => {
                     setLoading(false);
@@ -90,7 +90,7 @@ const ItemsList = ({ endpoint, mode, dataToSend }) => {
     return (
         <div>
             {loading && <Loader />}
-            {error && <p className="error">{`Error: ${error.message}`}</p>}
+            {error && <p className="error">{`${error}`}</p>}
             {data && (
                 <ItemsTable
                     data={data}

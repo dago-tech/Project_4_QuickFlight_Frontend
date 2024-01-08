@@ -3,8 +3,9 @@ import axios from "axios";
 /*Script to make HTTP requests to an API*/
 
 //Dev mode
-const baseURL = "http://127.0.0.1:8000/api/";
+//const baseURL = "http://127.0.0.1:8000/api/";
 //Production mode
+const baseURL = "https://quickflightapp.onrender.com/api/";
 // const baseURL = "https://quickflight-ffbdc0233c84.herokuapp.com/api/";
 
 

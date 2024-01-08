@@ -63,7 +63,6 @@ export function UserRegistration() {
                 });
             })
             .then((response) => {
-                console.log(response);
                 setMessage("Reservation created successfully");
             })
             .catch(() => {

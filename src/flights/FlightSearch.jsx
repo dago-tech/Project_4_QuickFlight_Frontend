@@ -40,7 +40,7 @@ export function FlightSearch() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (formData.origin == "" || formData.destination == "") {
+        if (formData.origin == "" && formData.destination == "") {
             setErrorForm("¡You did not fill out all the fields!");
             return;
         }
